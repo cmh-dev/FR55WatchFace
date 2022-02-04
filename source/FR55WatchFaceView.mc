@@ -22,16 +22,24 @@ class FR55WatchFaceView extends WatchUi.WatchFace {
 
     // Update the view
     function onUpdate(dc as Dc) as Void {
-        // Get and show the current time
-        var clockTime = System.getClockTime();
-        //var timeString = Lang.format("$1$:$2$:$3$", [clockTime.hour.format("%02d"), clockTime.min.format("%02d"), clockTime.sec.format("%02d")]);
-        var timeString = Lang.format("$1$:$2$", [clockTime.hour.format("%02d"), clockTime.min.format("%02d")]);
-        
-        var view = View.findDrawableById("TimeDisplay") as Text;
-        view.setText(timeString);
+        setupClock();
+        setupBattery();
 
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
+    }
+
+    private function setupClock() {
+        var clockTime = System.getClockTime();
+        var timeString = Lang.format("$1$:$2$", [clockTime.hour.format("%02d"), clockTime.min.format("%02d")]);
+        var view = View.findDrawableById("TimeDisplay") as Text;
+        view.setText(timeString);
+    }
+
+    private function setupBattery() {
+        var battery = System.getSystemStats().battery;				
+        var batteryDisplay = View.findDrawableById("BatteryDisplay");      
+        batteryDisplay.setText(battery.format("%d")+"%");	
     }
 
     // Called when this View is removed from the screen. Save the
