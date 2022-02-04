@@ -2,6 +2,8 @@ import Toybox.Graphics;
 import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
+import Toybox.Time;
+import Toybox.Time.Gregorian;
 
 class FR55WatchFaceView extends WatchUi.WatchFace {
 
@@ -24,7 +26,7 @@ class FR55WatchFaceView extends WatchUi.WatchFace {
     function onUpdate(dc as Dc) as Void {
         setupClock();
         setupBattery();
-
+        setupDate();
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }
@@ -39,7 +41,14 @@ class FR55WatchFaceView extends WatchUi.WatchFace {
     private function setupBattery() {
         var battery = System.getSystemStats().battery;				
         var batteryDisplay = View.findDrawableById("BatteryDisplay");      
-        batteryDisplay.setText(battery.format("%d")+"%");	
+        batteryDisplay.setText(battery.format("%d")+"%"); 
+    }
+
+    private function setupDate() {      
+    	var date = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
+        var dateString = Lang.format("$1$ $2$ $3$", [date.day, date.month, date.year]);
+        var dateDisplay = View.findDrawableById("DateDisplay");      
+        dateDisplay.setText(dateString);	    	
     }
 
     // Called when this View is removed from the screen. Save the
