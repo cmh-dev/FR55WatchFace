@@ -27,6 +27,7 @@ class FR55WatchFaceView extends WatchUi.WatchFace {
         drawTime();
         drawBattery();
         drawDate();
+        drawBreak();
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }
@@ -59,6 +60,12 @@ class FR55WatchFaceView extends WatchUi.WatchFace {
         var dateDisplay = View.findDrawableById("DateDisplay");      
         dateDisplay.setText(dateString);	    	
     }
+
+    private function drawBreak() {      
+        var dateDisplay = View.findDrawableById("BreakDisplay");    
+        dateDisplay.setText("_______________________");	    	
+    }
+
 
     // Called when this View is removed from the screen. Save the
     // state of this View here. This includes freeing resources from
