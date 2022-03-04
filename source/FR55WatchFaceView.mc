@@ -24,27 +24,36 @@ class FR55WatchFaceView extends WatchUi.WatchFace {
 
     // Update the view
     function onUpdate(dc as Dc) as Void {
-        setupClock();
-        setupBattery();
-        setupDate();
+        drawTime();
+        drawBattery();
+        drawDate();
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }
 
-    private function setupClock() {
+    private function drawTime() {
         var clockTime = System.getClockTime();
         var timeString = Lang.format("$1$:$2$", [clockTime.hour.format("%02d"), clockTime.min.format("%02d")]);
         var view = View.findDrawableById("TimeDisplay") as Text;
         view.setText(timeString);
     }
 
-    private function setupBattery() {
+    private function drawBattery() {
         var battery = System.getSystemStats().battery;				
-        var batteryDisplay = View.findDrawableById("BatteryDisplay");      
+        var batteryDisplay = View.findDrawableById("BatteryDisplay"); 
+        if (battery <=  25) {
+            batteryDisplay.setColor(Graphics.COLOR_RED);
+        }
+        else if (battery <= 75) {
+            batteryDisplay.setColor(Graphics.COLOR_YELLOW); 
+        }
+        else {
+            batteryDisplay.setColor(Graphics.COLOR_GREEN); 
+        }      
         batteryDisplay.setText(battery.format("%d")+"%"); 
     }
 
-    private function setupDate() {      
+    private function drawDate() {      
     	var date = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
         var dateString = Lang.format("$1$ $2$ $3$", [date.day, date.month, date.year]);
         var dateDisplay = View.findDrawableById("DateDisplay");      
