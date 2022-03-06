@@ -1,6 +1,6 @@
-# FR55WatchFace
+# FR55 Watch face
 
-A simple watchface for the Garmin FR55.
+A simple watch face for the Garmin FR55.
 
 ![Watch face](fr55-watch-face.png)
 
