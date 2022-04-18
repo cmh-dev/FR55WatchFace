@@ -27,7 +27,7 @@ class FR55WatchFaceView extends WatchUi.WatchFace {
         drawTime();
         drawBattery();
         drawDate();
-        drawBreak();
+        drawBreaks();
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }
@@ -61,9 +61,9 @@ class FR55WatchFaceView extends WatchUi.WatchFace {
         dateDisplay.setText(dateString);	    	
     }
 
-    private function drawBreak() {      
-        var dateDisplay = View.findDrawableById("BreakDisplay");    
-        dateDisplay.setText("_______________________");	    	
+    private function drawBreaks() {      
+        View.findDrawableById("BottomBreakDisplay").setText("_______________________");    
+        View.findDrawableById("TopBreakDisplay").setText("_______________________");    
     }
 
 
