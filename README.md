@@ -1,6 +1,8 @@
-# FR55WatchFace
+# Garmin Forerunner 55 Watch face
 
-A simple watchface for the Garmin FR55.
+A simple watch face for the Garmin Forerunner 55.
+
+![Watch face](fr55-watch-face.png)
 
 ### Watch face installation
 
