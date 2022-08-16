@@ -51,7 +51,7 @@ class FR55WatchFaceView extends WatchUi.WatchFace {
         else {
             batteryDisplay.setColor(Graphics.COLOR_GREEN); 
         }      
-        batteryDisplay.setText(battery.format("%d")+"%"); 
+        batteryDisplay.setText("Battery: " + battery.format("%d") + "%"); 
     }
 
     private function drawDate() {      
