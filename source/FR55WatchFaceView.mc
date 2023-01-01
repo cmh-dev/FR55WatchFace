@@ -41,11 +41,11 @@ class FR55WatchFaceView extends WatchUi.WatchFace {
 
     private function drawBattery() {
         var battery = System.getSystemStats().battery;				
-        var batteryDisplay = View.findDrawableById("BatteryDisplay"); 
+        var batteryDisplay = View.findDrawableById("BatteryDisplay") as Text; 
         if (battery <=  25) {
             batteryDisplay.setColor(Graphics.COLOR_RED);
         }
-        else if (battery <= 75) {
+        else if (battery <= 50) {
             batteryDisplay.setColor(Graphics.COLOR_YELLOW); 
         }
         else {
@@ -57,13 +57,15 @@ class FR55WatchFaceView extends WatchUi.WatchFace {
     private function drawDate() {      
     	var date = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
         var dateString = Lang.format("$1$ $2$ $3$", [date.day, date.month, date.year]);
-        var dateDisplay = View.findDrawableById("DateDisplay");      
+        var dateDisplay = View.findDrawableById("DateDisplay") as Text;      
         dateDisplay.setText(dateString);	    	
     }
 
-    private function drawBreaks() {      
-        View.findDrawableById("BottomBreakDisplay").setText("_______________________");    
-        View.findDrawableById("TopBreakDisplay").setText("_______________________");    
+    private function drawBreaks() {    
+        var bottomBreakDisplay = View.findDrawableById("BottomBreakDisplay") as Text;
+        bottomBreakDisplay.setText("_____________________"); 
+        var topBreakDisplay = View.findDrawableById("TopBreakDisplay") as Text;   
+        topBreakDisplay.setText("_____________________");    
     }
 
 
